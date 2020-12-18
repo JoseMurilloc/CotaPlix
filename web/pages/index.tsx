@@ -51,7 +51,7 @@ export default function Home() {
           <p>Cotações fáceis e rápidas só na cotaplix, se aplique na cotaplix e seja livre de borocracias.</p>
 
           <div>
-            <input type="text" placeholder="Digite seu email"/>
+            <input type="email" placeholder="Digite seu email"/>
             <button>Entre gratuitamente</button>
           </div>
 

@@ -100,6 +100,14 @@ export const ContainerFirst = styled.div`
         border-radius: 26px;
         padding: 0 30px;
         margin-right: 160px;
+        
+        font-size: 15px;
+        line-height: 17px;
+        letter-spacing: 0.015em;
+
+        color: #000000;
+
+        opacity: 0.5;
 
         &::placeholder {
           font-size: 15px;

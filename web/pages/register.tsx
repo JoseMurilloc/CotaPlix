@@ -10,9 +10,9 @@ const Register: React.FC = () => {
         <form>
           <h1>Criar sua conta</h1>
           <Input type="text" placeholder="Nome"/>
-          <Input type="text" placeholder="Email"/>
-          <Input type="text" placeholder="Senha"/>
-          <Input type="text" placeholder="Confirmar sua senha"/>
+          <Input type="email" placeholder="Email"/>
+          <Input type="password" placeholder="Senha"/>
+          <Input type="password" placeholder="Confirmar sua senha"/>
 
           <div>
             <input type="checkbox" id="scales" name="scales" />
