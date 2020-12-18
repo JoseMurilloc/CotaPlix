@@ -175,7 +175,7 @@ export const ContainerAbout = styled.div`
       letter-spacing: 0.015em;
 
       color: #fff;
-      width: 585px;
+      width: 400px;
       height: 56px;
     }
   }
@@ -235,7 +235,15 @@ export const ContainerFooter = styled.div`
   justify-content: space-between;
   padding-bottom: 30px; 
 
-  span {
+  > span {
+    width: 51px;
+    height: 51px;
+    border-radius: 50%;
+    background: #C4C4C4;
+    margin-left: 21px;
+  }
+
+  p {
     font-weight: normal;
     font-size: 14px;
     line-height: 16px;

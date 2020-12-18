@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 
 import ReactPlayer from 'react-player';
 import Button from '../components/button';
@@ -62,37 +63,42 @@ export default function Home() {
           <p>quick quote é um sistema web que organiza e automatiza suas cotações, fornecendo uma interface limpa e objetiva para os usuários do site, acesso totalmente livre ganhando mais agilidade, praticidade economizando tempo e dinheiro</p>
           <strong>Venha você também ter controle de suas cotações na palma da sua mão.</strong>
         </div>
-        <img src={womanWorksWithComputer} alt="Logo image"/>
+        <Image 
+          width="750"
+          height="750"
+          src={womanWorksWithComputer}
+          alt="Logo image"
+        />
       </ContainerAbout>
       <Containerfunctionality>
         <div>
-          <img src={internetIcon} alt="Internet Icon"/>
+          <Image width="80" height="80" src={internetIcon} alt="Internet Icon"/>
           <h1>A qualquer luga e qualquer hora</h1>
           <p>Com nosso sistema de cotação de fácil uso fornecemos a praticidade podendo realizar suas cotações a qualquer lugar.</p>
         </div>
         <div>
-          <img src={purchaseIcon} alt="Internet Icon"/>
+          <Image width="80" height="80" src={purchaseIcon} alt="Internet Icon"/>
           <h1>Compras e vendas</h1>
           <p>Compras e vendas seguras a qualquer momento do dia, Acompanhamento em tempo real de suas ofertas e cotações.</p>
         </div>
         <div>
-          <img src={statisticsIcon} alt="Static Icon"/>
+          <Image width="80" height="80" src={statisticsIcon} alt="Static Icon"/>
           <h1>Estatísticas</h1>
           <p>O quick quotefornece todos as cotações e listas que foram feitas durante o mês.</p>
         </div>
         
         <div>
-          <img src={insuranceIcon} alt="Internet Icon"/>
+          <Image width="80" height="80" src={insuranceIcon} alt="Internet Icon"/>
           <h1>Seguro e garantido</h1>
           <p>Com nosso sistema de cotação de fácil uso fornecemos a praticidade podendo realizar suas cotações a qualquer lugar.</p>
         </div>  
         <div>
-          <img src={managerIcon} alt="Internet Icon"/>
+          <Image width="80" height="80" src={managerIcon} alt="Internet Icon"/>
           <h1>Gerênciamento</h1>
           <p>Gerencie os preços desejados pelas mercadorias escolhidas, fazendo assim melhor controle financeiro</p>
         </div>
         <div>
-          <img src={offerIcon} alt="Internet Icon"/>
+          <Image width="80" height="80" src={offerIcon} alt="Internet Icon"/>
           <h1>Crie ofertas</h1>
           <p>Crie qualquer tipo de oferta e mande para seus clientes a qualquer hora.</p>
         </div>
@@ -123,11 +129,11 @@ export default function Home() {
         </main>
         <footer>
           <span></span>
-          <span>Cotaplix © 2021 - Todos os direitos reservados</span>
+          <p>Cotaplix © 2021 - Todos os direitos reservados</p>
           <div>
-            <img src={faceLogo} alt="Face logo"/>
-            <img src={faceLogo} alt="Face logo"/>
-            <img src={faceLogo} alt="Face logo"/>
+            <Image width="44" height="44" src={faceLogo} alt="Face logo"/>
+            <Image width="44" height="44" src={faceLogo} alt="Face logo"/>
+            <Image width="44" height="44" src={faceLogo} alt="Face logo"/>
           </div>
         </footer>
       </ContainerFooter>
