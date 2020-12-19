@@ -5,22 +5,20 @@ import { motion } from 'framer-motion';
 import { FormEvent, useState } from 'react';
 import api from '../src/services/api';
 import Router from 'next/router';
+import { useAuth } from '../hooks/auth';
 
 const Login: React.FC = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { sigIn } = useAuth();
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
-      const { data } = await api.post('/auth', {
-        email,
-        password
-      });
-  
-      localStorage.setItem('@cotaplix/token', JSON.stringify(data));
-      Router.push('/app/dashboard');
+      const credentials = { email, password }
+      sigIn(credentials)
+      Router.push('/app/dashboard')
     } catch(error) {
       alert(error)
     }   

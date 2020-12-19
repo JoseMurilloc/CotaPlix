@@ -44,24 +44,24 @@ const AuthProvider: React.FC = ({ children }) => {
    * Login de fato (chamando api post "/sessions")
    */
   const sigIn = useCallback(async ({ email, password}) => {
-    const response = await api.post('/sessions', {
+    const response = await api.post('/auth', {
       email,
       password
     })
 
-    const { token, user } = response.data;
+    const { token } = response.data;
 
-    localStorage.setItem('@GBB:token', token);
-    localStorage.setItem('@GBB:user', JSON.stringify(user));
+    localStorage.setItem('@CotaPlix:token', token);
 
     setData({ token });
+    console.log(data);
+    
   }, [])
 
 
   const sigOut = useCallback(() => {
 
     localStorage.removeItem('@GBB:token');
-    localStorage.removeItem('@GBB:user');
 
     setData({ } as AuthState);
   }, [])
