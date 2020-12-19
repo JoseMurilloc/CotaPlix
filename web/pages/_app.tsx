@@ -1,11 +1,14 @@
 import GlobalStyles from '../styles/GlobalStyles';
 import { AnimatePresence } from 'framer-motion';
+import { AuthProvider } from '../hooks/auth';
 
 function MyApp({ Component, pageProps }) {
   return (
     <AnimatePresence>
-      <GlobalStyles />
-      <Component {...pageProps} />
+      <AuthProvider>
+        <GlobalStyles />
+        <Component {...pageProps} />
+      </AuthProvider>
     </AnimatePresence>
   )
 }
