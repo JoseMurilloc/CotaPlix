@@ -1,26 +1,44 @@
 import { Container, Content, Background } from '../styles/login/styles'
+import { FormEvent, useState } from 'react';
+import { useAuth } from '../hooks/auth';
+import { motion } from 'framer-motion';
+
+import Router from 'next/router';
 import Input from '../components/input';
 import Button from '../components/button';
-import { motion } from 'framer-motion';
-import { FormEvent, useState } from 'react';
-import api from '../src/services/api';
-import Router from 'next/router';
-import { useAuth } from '../hooks/auth';
+import { useToast } from '../hooks/toast';
+
+interface SiginFormData {
+  email: string;
+  password: string;
+}
 
 const Login: React.FC = () => {
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { sigIn } = useAuth();
+  const { addToast } = useToast();
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
       const credentials = { email, password }
+     
       sigIn(credentials)
-      Router.push('/app/dashboard')
+
+      addToast({
+        type: 'sucess',
+        title: 'Autenticação concluida com sucesso',
+        description: 'Você está logado na aplicação!'
+      });
+     
     } catch(error) {
-      alert(error)
+      addToast({
+        type: 'error',
+        title: 'Error na autenticação',
+        description: 'Ocorreu um erro ao fazer o login, cheque as cresdenciais.'
+      });
     }   
   }
 

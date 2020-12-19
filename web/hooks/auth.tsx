@@ -54,7 +54,6 @@ const AuthProvider: React.FC = ({ children }) => {
     localStorage.setItem('@CotaPlix:token', token);
 
     setData({ token });
-    console.log(data);
     
   }, [])
 
