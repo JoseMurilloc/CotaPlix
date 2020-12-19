@@ -24,3 +24,6 @@ Route.get('/', () => {
 Route.post('/users', 'UserController.store')
 
 Route.post('/auth', 'AuthController.store')
+
+Route.post('/products', 'ProductController.store').middleware(['auth'])
+Route.get('/products', 'ProductController.index').middleware(['auth'])
