@@ -22,8 +22,12 @@ Route.get('/', () => {
 
 
 Route.post('/users', 'UserController.store')
+  .validator('User')
 
 Route.post('/auth', 'AuthController.store')
 
-Route.post('/products', 'ProductController.store').middleware(['auth'])
-Route.get('/products', 'ProductController.index').middleware(['auth'])
+
+Route.post('/products', 'ProductController.store')
+  .middleware(['auth'])
+Route.get('/products', 'ProductController.index')
+  .middleware(['auth'])
