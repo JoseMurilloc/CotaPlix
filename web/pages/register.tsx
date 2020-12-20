@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { FormEvent, useState } from 'react';
 import api from '../src/services/api';
 import { useToast } from '../hooks/toast';
+import { useRouter } from 'next/router';
 
 const Register: React.FC = () => {
   
@@ -14,6 +15,7 @@ const Register: React.FC = () => {
   const [name, setName] = useState('');
   
   const { addToast } = useToast();
+  const router = useRouter();
 
   async function handleRegister(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -30,6 +32,8 @@ const Register: React.FC = () => {
         title: 'Usuário cadastrado com sucesso!',
         description: 'Use suas credenciais para acessar!'
       });
+
+      router.push('/login');
 
     } catch {
       addToast({

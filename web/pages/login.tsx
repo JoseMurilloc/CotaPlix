@@ -3,10 +3,11 @@ import { FormEvent, useState } from 'react';
 import { useAuth } from '../hooks/auth';
 import { motion } from 'framer-motion';
 
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import Input from '../components/input';
 import Button from '../components/button';
 import { useToast } from '../hooks/toast';
+import { route } from 'next/dist/next-server/server/router';
 
 interface SiginFormData {
   email: string;
@@ -20,6 +21,9 @@ const Login: React.FC = () => {
   const { sigIn } = useAuth();
   const { addToast } = useToast();
 
+  const router = useRouter();
+
+
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const credentials = { email, password }
@@ -27,13 +31,16 @@ const Login: React.FC = () => {
     const toastStatus = await sigIn(credentials);
 
     switch (toastStatus) {
-      case true:
+      case true: {
         addToast({
           type: 'sucess',
           title: 'Autenticação concluida com sucesso',
           description: 'Você está logado na aplicação!'
         });
+
+        router.push('/app/dashboard')
         break;
+      }
       case false:
         addToast({
           type: 'error',
