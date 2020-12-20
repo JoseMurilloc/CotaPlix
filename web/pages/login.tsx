@@ -23,22 +23,27 @@ const Login: React.FC = () => {
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     const credentials = { email, password }
-     
-    if (await sigIn(credentials)) {
-      addToast({
-        type: 'sucess',
-        title: 'Autenticação concluida com sucesso',
-        description: 'Você está logado na aplicação!'
-      });
-    } else {
-      addToast({
-        type: 'error',
-        title: 'Autenticação concluida com sucesso',
-        description: 'Você está logado na aplicação!'
-      });
-    }
+    
+    const toastStatus = await sigIn(credentials);
 
-      
+    switch (toastStatus) {
+      case true:
+        addToast({
+          type: 'sucess',
+          title: 'Autenticação concluida com sucesso',
+          description: 'Você está logado na aplicação!'
+        });
+        break;
+      case false:
+        addToast({
+          type: 'error',
+          title: 'Erro na autenticação',
+          description: 'Suas credenciais estão incorretas, tente novamente!'
+        });
+        break;
+      default:
+        return;
+    }      
   }
 
   return (
