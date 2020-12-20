@@ -10,7 +10,7 @@ const Register: React.FC = () => {
   
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [password_confirmed, setPasswordConfirmed] = useState('');
+  const [password_confirmation, setPasswordConfirmation] = useState('');
   const [name, setName] = useState('');
   
   const { addToast } = useToast();
@@ -18,10 +18,11 @@ const Register: React.FC = () => {
   async function handleRegister(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     try {
-      const response = await api.post('/users', {
+      await api.post('/users', {
         email,
         password,
-        name
+        name,
+        password_confirmation
       });
 
       addToast({
@@ -70,9 +71,9 @@ const Register: React.FC = () => {
           <Input 
             type="password"
             placeholder="Confirmar sua senha"
-            name="password"
-            value={password_confirmed}
-            onChange={e => setPasswordConfirmed(e.target.value)}  
+            name="password_confirmation"
+            value={password_confirmation}
+            onChange={e => setPasswordConfirmation(e.target.value)}  
           />
 
           <div>
