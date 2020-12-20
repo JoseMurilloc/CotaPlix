@@ -22,24 +22,23 @@ const Login: React.FC = () => {
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    try {
-      const credentials = { email, password }
+    const credentials = { email, password }
      
-      sigIn(credentials)
-
+    if (await sigIn(credentials)) {
       addToast({
         type: 'sucess',
         title: 'Autenticação concluida com sucesso',
         description: 'Você está logado na aplicação!'
       });
-     
-    } catch(error) {
+    } else {
       addToast({
         type: 'error',
-        title: 'Error na autenticação',
-        description: 'Ocorreu um erro ao fazer o login, cheque as cresdenciais.'
+        title: 'Autenticação concluida com sucesso',
+        description: 'Você está logado na aplicação!'
       });
-    }   
+    }
+
+      
   }
 
   return (

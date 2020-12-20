@@ -12,7 +12,7 @@ interface Credentials {
 }
 
 interface AuthContextData {
-  sigIn(credentials: Credentials): Promise<void>;
+  sigIn(credentials: Credentials): Promise<boolean>;
   sigOut(): void;
 }
 
@@ -30,7 +30,7 @@ const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>();
 
   useEffect(() => {
-    const token = localStorage.getItem('@GBB:token');
+    const token = localStorage.getItem('@CotaPlix:token');
 
     if (token) {
       setData({token})
@@ -44,23 +44,28 @@ const AuthProvider: React.FC = ({ children }) => {
    * Login de fato (chamando api post "/sessions")
    */
   const sigIn = useCallback(async ({ email, password}) => {
-    const response = await api.post('/auth', {
-      email,
-      password
-    })
-
-    const { token } = response.data;
-
-    localStorage.setItem('@CotaPlix:token', token);
-
-    setData({ token });
+    try {
+      const response = await api.post('/auth', {
+        email,
+        password
+      })
+  
+      const { token } = response.data;
+  
+      localStorage.setItem('@CotaPlix:token', token);
+  
+      setData({ token });
+      return true
+    } catch(error) {
+      return false
+    }
     
   }, [])
 
 
   const sigOut = useCallback(() => {
 
-    localStorage.removeItem('@GBB:token');
+    localStorage.removeItem('@CotaPlix:token');
 
     setData({ } as AuthState);
   }, [])
