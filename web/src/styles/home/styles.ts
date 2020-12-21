@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import backgroundHeader from '../../public/assets/BackgroundHeader.svg';
+import backgroundHeader from '../../../public/assets/BackgroundHeader.svg';
 
 export const Container = styled(motion.div)`
   height: 100%;

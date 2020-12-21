@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import ReactPlayer from 'react-player';
-import Button from '../components/button';
+import Button from '../../components/button';
 
 import { 
   Container,
@@ -14,14 +14,14 @@ import {
   Containerfunctionality
 } from '../styles/home/styles';
 
-import womanWorksWithComputer from '../public/assets/womanWorksWithComputer.svg';
-import faceLogo from '../public/assets/faceLogo.svg';
-import internetIcon from '../public/assets/InternetIcon.svg';
-import offerIcon from '../public/assets/offerIcon.svg';
-import statisticsIcon from '../public/assets/statisticsIcon.svg';
-import managerIcon from '../public/assets/managerIcon.svg';
-import purchaseIcon from '../public/assets/purchaseIcon.svg';
-import insuranceIcon from '../public/assets/insuranceIcon.svg';
+import womanWorksWithComputer from '../../public/assets/womanWorksWithComputer.svg';
+import faceLogo from '../../public/assets/faceLogo.svg';
+import internetIcon from '../../public/assets/InternetIcon.svg';
+import offerIcon from '../../public/assets/offerIcon.svg';
+import statisticsIcon from '../../public/assets/statisticsIcon.svg';
+import managerIcon from '../../public/assets/managerIcon.svg';
+import purchaseIcon from '../../public/assets/purchaseIcon.svg';
+import insuranceIcon from '../../public/assets/insuranceIcon.svg';
 
 export default function Home() {
 

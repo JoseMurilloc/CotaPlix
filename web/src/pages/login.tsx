@@ -1,18 +1,17 @@
 import { Container, Content, Background } from '../styles/login/styles'
 import { FormEvent, useState } from 'react';
-import { useAuth } from '../hooks/auth';
+import { useAuth } from '../../hooks/auth';
 import { motion } from 'framer-motion';
 
-import Router, { useRouter } from 'next/router';
-import Input from '../components/input';
-import Button from '../components/button';
-import { useToast } from '../hooks/toast';
-import { route } from 'next/dist/next-server/server/router';
+import { useRouter } from 'next/router';
+import Input from '../../components/input';
+import Button from '../../components/button';
+import { useToast } from '../../hooks/toast';
 
-interface SiginFormData {
-  email: string;
-  password: string;
-}
+// interface SiginFormData {
+//   email: string;
+//   password: string;
+// }
 
 const Login: React.FC = () => {
 
