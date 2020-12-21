@@ -2,13 +2,15 @@
 
 const BaseExceptionHandler = use('BaseExceptionHandler')
 const Youch = use('youch')
+const Env = use('Env')
+
 class ExceptionHandler extends BaseExceptionHandler {
   async handle (error, { request, response }) {
     if (error.name === 'ValidationException') {
      return response.status(error.status).json(error.messages)
     }
     if (Env.get('NODE_ENV') === 'development') {
-      const youch = new Youch(error, resquest.request)
+      const youch = new Youch(error, request.request)
       const errorJSON = await youch.toJSON()
 
       return response.status(error.status).json(errorJSON)
@@ -18,7 +20,7 @@ class ExceptionHandler extends BaseExceptionHandler {
     return response.status(error.status)
   }
   async report (error, { request }) {
-    console.log(error)
+    // console.log(error)
   }
 }
 
