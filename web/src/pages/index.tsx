@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 
 import ReactPlayer from 'react-player';
-import Button from '../../components/button';
+import Button from '../../src/components/button';
 
 import { 
   Container,

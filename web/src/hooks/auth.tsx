@@ -1,6 +1,6 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { useContext } from "react";
-import api from "../src/services/api";
+import api from "../services/api";
 
 interface AuthState {
   token: string;
@@ -12,6 +12,7 @@ interface Credentials {
 }
 
 interface AuthContextData {
+  data: AuthState;
   sigIn(credentials: Credentials): Promise<boolean>;
   sigOut(): void;
 }
@@ -34,9 +35,10 @@ const AuthProvider: React.FC = ({ children }) => {
 
     if (token) {
       setData({token})
+    } else {
+      setData({} as AuthState)
     }
 
-    setData({} as AuthState)
   }, [])
   
 
@@ -75,7 +77,7 @@ const AuthProvider: React.FC = ({ children }) => {
      * Value são todos  os dados globais ou funções pertecente a esse
      * componente que podem ser acessada pelos demais
      */
-    <AuthContext.Provider value={{ sigIn, sigOut }}>
+    <AuthContext.Provider value={{ sigIn, sigOut, data }}>
       { children }
     </AuthContext.Provider>
   )

@@ -1,12 +1,12 @@
 import { Container, Content, Background } from '../styles/login/styles'
 import { FormEvent, useState } from 'react';
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../src/hooks/auth';
 import { motion } from 'framer-motion';
 
 import { useRouter } from 'next/router';
-import Input from '../../components/input';
-import Button from '../../components/button';
-import { useToast } from '../../hooks/toast';
+import Input from '../../src/components/input';
+import Button from '../../src/components/button';
+import { useToast } from '../../src/hooks/toast';
 
 // interface SiginFormData {
 //   email: string;
@@ -14,14 +14,14 @@ import { useToast } from '../../hooks/toast';
 // }
 
 const Login: React.FC = () => {
-
+  
+  
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { sigIn } = useAuth();
   const { addToast } = useToast();
-
+  
   const router = useRouter();
-
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
