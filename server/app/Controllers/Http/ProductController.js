@@ -26,6 +26,23 @@ class ProductController {
 
     return product
   }
+
+  async update({ request, params }) {
+    const product = await Product.findOrFail(params.id)
+
+    const data = request.only([
+      'description',
+      'price',
+      'code_bar',
+      'unity'
+    ])
+
+    product.merge(data)
+
+    await product.save()
+
+    return product
+  }
 }
 
 module.exports = ProductController
