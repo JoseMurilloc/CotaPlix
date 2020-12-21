@@ -1,6 +1,17 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const Container = styled.input`
+interface ContainerProps {
+  isError: boolean;
+}
+
+export const Container = styled.input<ContainerProps>`
+
+  ${(props) =>
+    props.isError &&
+    css`
+      border: 2px solid #c53030 !important;
+    `}
+
   background: #FFFFFF;
   border: 1px solid #C4C4C4;
   border-radius: 10px;

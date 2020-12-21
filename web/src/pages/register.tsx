@@ -2,30 +2,46 @@ import { Container, Content, Background } from '../styles/register/styles'
 import Input from '../../src/components/input';
 import Button from '../../src/components/button';
 import { motion } from 'framer-motion';
-import { FormEvent, useState } from 'react';
 import api from '../../src/services/api';
 import { useToast } from '../../src/hooks/toast';
 import { useRouter } from 'next/router';
+import { Form } from '@unform/web';
+
+import * as Yup from 'yup';
+import { useRef } from 'react';
+import getValidationErrors from '../utils/getValidationErrors';
+
+interface RegisterFormData {
+  name: string;
+  email: string;
+  password: string;
+  password_confirmation: string;
+}
+
 
 const Register: React.FC = () => {
-  
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password_confirmation, setPasswordConfirmation] = useState('');
-  const [name, setName] = useState('');
-  
+    
   const { addToast } = useToast();
   const router = useRouter();
+  const formRef = useRef(null);
 
-  async function handleRegister(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function handleRegister(data: RegisterFormData) {
     try {
-      await api.post('/users', {
-        email,
-        password,
-        name,
-        password_confirmation
+
+      formRef.current?.setErrors({});   
+  
+      const scheme = Yup.object().shape({
+        email: Yup.string().required('E-mail obrigatório').email('Digite um email válido'),
+        password: Yup.string().required('Senha é obrigatória'),
+        password_confirmation: Yup.string().required('Confirmação de senha é obrigatória'),
+        name: Yup.string().required('Nome é obrigatório')
       });
+  
+      await scheme.validate(data, {
+        abortEarly: false
+      })  
+
+      await api.post('/users', data);
 
       addToast({
         type: 'sucess',
@@ -35,7 +51,16 @@ const Register: React.FC = () => {
 
       router.push('/login');
 
-    } catch {
+    } catch(err) {
+
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err)
+  
+        formRef.current?.setErrors(errors) 
+        
+        return;
+      }
+
       addToast({
         type: 'error',
         title: 'Error ao tentar se cadastrar!',
@@ -49,35 +74,27 @@ const Register: React.FC = () => {
   return (
     <Container>
       <Content>
-        <form onSubmit={handleRegister}>
+        <Form ref={formRef} onSubmit={handleRegister}>
           <h1>Criar sua conta</h1>
           <Input 
             type="text"
             placeholder="Nome"
             name="name"
-            value={name}
-            onChange={e => setName(e.target.value)}
           />
           <Input 
             type="email"
             placeholder="Email"
             name="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
           />
           <Input 
             type="password"
             placeholder="Senha"
             name="password"
-            value={password}
-            onChange={e => setPassword(e.target.value)}
           />
           <Input 
             type="password"
             placeholder="Confirmar sua senha"
             name="password_confirmation"
-            value={password_confirmation}
-            onChange={e => setPasswordConfirmation(e.target.value)}  
           />
 
           <div>
@@ -92,7 +109,7 @@ const Register: React.FC = () => {
           >
             Finalizar Cadastro
           </motion.button>
-        </form>
+        </Form>
       </Content>
       <Background>
         <div>

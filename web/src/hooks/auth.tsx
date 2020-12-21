@@ -13,7 +13,7 @@ interface Credentials {
 
 interface AuthContextData {
   data: AuthState;
-  sigIn(credentials: Credentials): Promise<boolean>;
+  sigIn(credentials: Credentials): Promise<void>;
   sigOut(): void;
 }
 
@@ -46,22 +46,17 @@ const AuthProvider: React.FC = ({ children }) => {
    * Login de fato (chamando api post "/sessions")
    */
   const sigIn = useCallback(async ({ email, password}) => {
-    try {
-      const response = await api.post('/auth', {
-        email,
-        password
-      })
-  
-      const { token } = response.data;
-  
-      localStorage.setItem('@CotaPlix:token', token);
-  
-      setData({ token });
-      return true
-    } catch(error) {
-      return false
-    }
-    
+    const response = await api.post('/auth', {
+      email,
+      password
+    })
+
+    const { token } = response.data;
+
+    localStorage.setItem('@CotaPlix:token', token);
+
+    setData({ token });
+
   }, [])
 
 
