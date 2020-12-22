@@ -1,5 +1,4 @@
 import { useField } from '@unform/core';
-import { spawn } from 'child_process';
 import React, { InputHTMLAttributes, useEffect, useRef } from 'react';
 import { Container } from '../styles/input/styles';
 

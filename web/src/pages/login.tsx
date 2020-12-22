@@ -96,7 +96,7 @@ const Login: React.FC = () => {
           />
           
           <div>
-            <a href="/">Esqueci minha senha</a>
+            <a href="/recoverPassword">Esqueci minha senha</a>
           </div>
 
           <motion.button
