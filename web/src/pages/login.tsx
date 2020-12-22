@@ -12,6 +12,7 @@ import { useRef } from 'react';
 
 import * as Yup from 'yup';
 import getValidationErrors from '../utils/getValidationErrors';
+import Link from 'next/link';
 
 interface SiginFormData {
   email: string;
@@ -96,7 +97,7 @@ const Login: React.FC = () => {
           />
           
           <div>
-            <a href="/recoverPassword">Esqueci minha senha</a>
+            <Link href="/recoverPassword">Esqueci minha senha</Link>
           </div>
 
           <motion.button
