@@ -3,6 +3,13 @@
 const User = use('App/Models/User')
 
 class UserController {
+
+  async show({ auth }) {
+    const { name, email, id } = auth.user
+
+    return { name, email, id }
+  }
+
   async store({ request }) {
     const data = request.only(['email', 'password', 'name'])
 
