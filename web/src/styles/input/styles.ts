@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components';
 
 interface ContainerProps {
   isError: boolean;
+  isFocus: boolean;
+  isFilled: boolean;
 }
 
 export const Container = styled.input<ContainerProps>`
@@ -10,6 +12,11 @@ export const Container = styled.input<ContainerProps>`
     props.isError &&
     css`
       border: 2px solid #c53030 !important;
+    `}
+    ${(props) =>
+      props.isFocus &&
+      css`
+        border: 2px solid #363981 !important;
     `}
 
   background: #FFFFFF;
