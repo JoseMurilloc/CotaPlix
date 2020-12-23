@@ -46,7 +46,7 @@ const AuthProvider: React.FC = ({ children }) => {
    * Login de fato (chamando api post "/sessions")
    */
   const sigIn = useCallback(async ({ email, password}) => {
-    const response = await api.post('/auth', {
+    const response = await api.post<AuthState>('/auth', {
       email,
       password
     })
@@ -54,6 +54,9 @@ const AuthProvider: React.FC = ({ children }) => {
     const { token } = response.data;
 
     localStorage.setItem('@CotaPlix:token', token);
+
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+
 
     setData({ token });
 
