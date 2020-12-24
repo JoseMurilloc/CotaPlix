@@ -1,6 +1,7 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 import { useContext } from "react";
 import api from "../services/api";
+import Cookies from 'js-cookie';
 
 interface AuthState {
   token: string;
@@ -31,7 +32,7 @@ const AuthProvider: React.FC = ({ children }) => {
   const [data, setData] = useState<AuthState>();
 
   useEffect(() => {
-    const token = localStorage.getItem('@CotaPlix:token');
+    const token = Cookies.get('CotaPlixTokenUser');
 
     if (token) {
       setData({token})
@@ -53,7 +54,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
     const { token } = response.data;
 
-    localStorage.setItem('@CotaPlix:token', token);
+    Cookies.set('CotaPlixTokenUser', token);
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
@@ -65,7 +66,7 @@ const AuthProvider: React.FC = ({ children }) => {
 
   const sigOut = useCallback(() => {
 
-    localStorage.removeItem('@CotaPlix:token');
+    Cookies.remove('CotaPlixTokenUser');
 
     setData({ } as AuthState);
   }, [])

@@ -27,7 +27,7 @@ const RecoverPassword: React.FC = () => {
 
   async function handlePasswordUpdate(data: PasswordUpdate) {
     try {
-      await api.put('/forgot_pasword_update', {
+      await api.put('/forgot_pasword', {
         password: data.password,
         token: data.token
       });
