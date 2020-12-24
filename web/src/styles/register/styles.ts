@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import { moveRightToLeft } from './../globlaAnimation';
+
 
 export const Container = styled.div`
   height: 100vh;
@@ -14,7 +16,10 @@ export const Background = styled.div`
   justify-content: center;
   align-items: center;
 
+
+
   div {
+    animation: ${moveRightToLeft} 1s;
 
     display: flex;
     flex-direction: column;
@@ -50,6 +55,8 @@ export const Content = styled.div`
   align-items: center;
 
   form {
+
+    animation: ${moveRightToLeft} 1s;
 
     display: flex;
     flex-direction: column;

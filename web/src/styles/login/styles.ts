@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { moveRightToLeft } from './../globlaAnimation';
 
 export const Container = styled.div`
   height: 100vh;
@@ -14,7 +15,9 @@ export const Background = styled.div`
   justify-content: center;
   align-items: center;
 
+
   div {
+    animation: ${moveRightToLeft} 1s;
 
     display: flex;
     flex-direction: column;
@@ -39,28 +42,6 @@ export const Background = styled.div`
   
       color: #FFFFFF;
     }
-
-    /* a {
-      margin-top: 23px;
-      border: 1px solid #FFFFFF;
-      border-radius: 30px;
-      
-      width: 255px;
-      height: 51px;
-
-      background-color: transparent;
-      
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-
-      font-size: 16px;
-      line-height: 19px;
-
-      letter-spacing: 0.015em;
-      color: #FFFFFF;
-    } */
   }
 `;
 
@@ -74,6 +55,9 @@ export const Content = styled.div`
   margin-top: 45px;
 
   form {
+
+    animation: ${moveRightToLeft} 1s;
+
 
     display: flex;
     flex-direction: column;

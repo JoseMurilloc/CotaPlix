@@ -1,8 +1,19 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 export const Container = styled.div`
   height: 100vh;
   display: flex;
+`;
+
+const moveRightToLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-30px)
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0)
+  }
 `;
 
 export const Content = styled.div`
@@ -13,6 +24,9 @@ export const Content = styled.div`
   align-items: center;
 
   padding: 45px 90px;
+
+  animation: ${moveRightToLeft} 1s;
+
 
   h1 {
     font-weight: bold;
@@ -82,5 +96,8 @@ export const Background = styled.div`
   justify-content: center;
   align-items: center;
 
+  img {
+    animation: ${moveRightToLeft} 1s;
+  }
 
 `;
