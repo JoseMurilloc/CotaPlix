@@ -1,6 +1,6 @@
 import { Form } from '@unform/web';
 import { motion } from 'framer-motion';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Input from '../components/input';
 
 import { 
@@ -10,9 +10,45 @@ import {
 } from '../styles/recoverPasswordUpdate/styles';
 
 import recoverPassword from '../../public/assets/recoverPassword.svg';
+import api from '../services/api';
+import { useToast } from '../hooks/toast';
+import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 
+interface PasswordUpdate {
+  token: string;
+  password: string;
+  password_confirmation: string;
+}
 
 const RecoverPassword: React.FC = () => {
+  const { addToast } = useToast();
+  const router = useRouter();
+
+  async function handlePasswordUpdate(data: PasswordUpdate) {
+    try {
+      await api.put('/forgot_pasword_update', {
+        password: data.password,
+        token: data.token
+      });
+      
+      addToast({
+        type: 'sucess',
+        title: 'Mudança de senha concluída'
+      });
+
+      router.push('/login')
+      
+    } catch {
+      addToast({
+        type: 'error',
+        title: 'Error na tentativa de mudança de senha',
+        description: 'Tente novamente ou verifique se token já está expirado ou está incorreto!'
+      });
+      return;
+    }
+  }
+
   return (
     <Container>
       <Content>
@@ -21,10 +57,10 @@ const RecoverPassword: React.FC = () => {
           Logo após a confirmação correta do código enviado via e-mail você terá acesso liberado para aplicar sua nova senha.
         </p>
         
-        <Form onSubmit={() => console.log('Submit')}>
+        <Form onSubmit={handlePasswordUpdate}>
           <Input 
             type="text"
-            name="code_update"
+            name="token"
             placeholder="Digite o seu codigo aqui..."
           />
 

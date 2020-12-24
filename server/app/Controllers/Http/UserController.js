@@ -23,8 +23,6 @@ class UserController {
     delete user.$attributes.created_at
     delete user.$attributes.updated_at
 
-    console.log(user);
-
     return user
   }
 }

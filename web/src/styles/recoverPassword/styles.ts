@@ -63,6 +63,13 @@ export const Content = styled.div`
 
       text-transform: uppercase;
     }
+
+    button:disabled,
+    button[disabled] {
+      border: 1px solid #999999 !important;
+      background-color: #cccccc !important;
+      color: #666666 !important;
+    }
   }
 
 `;
