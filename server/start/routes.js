@@ -9,11 +9,9 @@ Route.get('/user', 'UserController.show').middleware(['auth'])
 Route.post('/auth', 'AuthController.store')
 
 Route.post('/forgot_pasword', 'ForgotPasswordController.store')
-Route.put('/forgot_pasword_update', 'ForgotPasswordController.update')
+Route.put('/forgot_pasword', 'ForgotPasswordController.update')
 
 
-Route.post('/products', 'ProductController.store').middleware(['auth'])
+Route.resource('products','ProductController')
+  .only(['store', 'index', 'update']).middleware(['auth'])
 
-Route.get('/products','ProductController.index').middleware(['auth'])
-
-Route.put('/products/:id','ProductController.update').middleware(['auth'])

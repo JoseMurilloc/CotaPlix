@@ -17,8 +17,6 @@ class ProductController {
     const data = request.only(['description','price', 'code_bar', 'unity'])
     const user_id = auth.user.id
 
-    console.log(data, user_id);
-
     const product = await Product.create({
       ...data,
       user_id
