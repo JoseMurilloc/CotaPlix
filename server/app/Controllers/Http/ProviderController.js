@@ -4,9 +4,19 @@ const Provider = use('App/Models/Provider')
 
 class ProviderController {
 
-  async store ({ request, auth }) {
-    await auth.check();
+  async index({ auth  }) {
+    const { id } = auth.user
+    const providers = await Provider
+      .query()
+      .with('address')
+      .where('user_id', id)
+      .select(['name_fantasy', 'name_salesman', 'email','address_id'])
+      .fetch()
 
+    return providers;
+  }
+
+  async store ({ request, auth }) {
     const data = request.only(['name_fantasy', 'name_salesman', 'email','address_id'])
 
     const provider = await Provider.create({

@@ -12,9 +12,13 @@ Route.post('/forgot_pasword', 'ForgotPasswordController.store')
 Route.put('/forgot_pasword', 'ForgotPasswordController.update')
 
 
-Route.resource('products','ProductController')
-  .only(['store', 'index', 'update', 'destroy']).middleware(['auth'])
 
-Route.post('/addresses', 'AddressController.store')
+Route.group(() => {
+  Route.post('/addresses', 'AddressController.store')
 
-Route.post('/providers', 'ProviderController.store')
+  Route.resource('products','ProductController')
+    .only(['store', 'index', 'update', 'destroy'])
+
+  Route.post('/providers', 'ProviderController.store')
+  Route.get('/providers', 'ProviderController.index')
+}).middleware(['auth'])
