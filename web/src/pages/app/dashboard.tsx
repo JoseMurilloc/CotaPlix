@@ -1,8 +1,6 @@
 import { 
   Container,
-  SideBar,
   Main,
-  Header,
   Content
 } from '../../styles/dashboard/styles';
 
@@ -10,67 +8,53 @@ import Router from "next/router";
 
 import Nav from '../../components/nav';
 
-import { VscSettings } from 'react-icons/vsc';
-import { MdNotificationsActive } from 'react-icons/md';
-
-import moreIcon from '../../../public/assets/moreIcon.svg';
 import moreIconBlack from '../../../public/assets/moreIconBlack.svg';
-import profile from '../../../public/assets/profile.svg';
 import listBlack from '../../../public/assets/listBlack.svg';
 import packageIconBlack from '../../../public/assets/packageIconBlack.svg';
 import { Context } from 'vm';
 import api from '../../services/api';
+import Header from '../../components/header';
+import { motion } from 'framer-motion';
+import { GetServerSideProps } from 'next';
 // import Redirect from '../../components/redirect';
 
 function Dashboard() {
   
   return (
     <Container>
-      <SideBar>
-        <div>
-          <h1>quick quock</h1>
-          <img src={moreIcon} alt="More Icon"/>
-        </div>
-        <Nav/>
-      </SideBar>
-      <Main style={{ backgroundColor: 'white' }}>
-        <Header>
-          <span></span>
-          <h1>quick quote</h1>
-
-          <section>
-            <div className="setting">
-              <VscSettings size={25} />
-            </div>
-            <div className="notification">
-              15
-              <MdNotificationsActive size={25} color="#fff"/>
-            </div>
-            <div className="profile">
-              <span>Geissy Maysla</span>
-              <img src={profile} alt="Profile"/>
-            </div>
-          </section>
-        </Header>
-
-        <Content>
+      <Nav/>
+      <Main>
+        <Header />
+        <Content style={{ backgroundColor: 'white', height: '86.5vh' }}>
           <h1>Funcionalidades mais recorrentes</h1>
 
           <div id="container">
-            <div id="register-product">
+            <motion.div 
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              id="register-product"
+            >
               <img src={moreIconBlack} alt="More"/>
               <p>Cadastrar Produto</p>
-            </div>
+            </motion.div>
 
-            <div id="register-list">
+            <motion.div 
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              id="register-list"
+            >
               <img src={listBlack} alt="More"/>
               <p>Cadastrar lista</p>
-            </div>
+            </motion.div>
 
-            <div id="open-event">
+            <motion.div 
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              id="open-event"
+            >
               <img src={packageIconBlack} alt="More"/>
               <p>Abrir cotação</p>
-            </div>
+            </motion.div>
           </div>
         </Content>
       </Main>
@@ -84,9 +68,8 @@ interface User {
   name: string;
 }
 
-Dashboard.getInitialProps = async (ctx: Context) => {
-  const cookie = ctx.req.headers.cookie as string;
-  console.log(cookie)
+export const getServerSideProps: GetServerSideProps<User> = async (ctx) => {
+  const cookie = await ctx.req.headers.cookie as string;
 
   const handleRedirection = () => 
     typeof window !== "undefined"
@@ -112,9 +95,6 @@ Dashboard.getInitialProps = async (ctx: Context) => {
   } catch {
     return handleRedirection();
   }
-
-
-  // console.log(response.data)
-};
+}
 
 export default Dashboard;
