@@ -13,5 +13,5 @@ Route.put('/forgot_pasword', 'ForgotPasswordController.update')
 
 
 Route.resource('products','ProductController')
-  .only(['store', 'index', 'update']).middleware(['auth'])
+  .only(['store', 'index', 'update', 'destroy']).middleware(['auth'])
 

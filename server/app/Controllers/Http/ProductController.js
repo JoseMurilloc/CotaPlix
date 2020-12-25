@@ -41,6 +41,17 @@ class ProductController {
 
     return product
   }
+
+  async destroy({ params, response }) {
+    const { id } = params
+    const product = await Product.find(id)
+
+    if (!product) {
+      return response.status(400).json({ error: 'Product not exists please try again'})
+    }
+
+    await product.delete()
+  }
 }
 
 module.exports = ProductController
