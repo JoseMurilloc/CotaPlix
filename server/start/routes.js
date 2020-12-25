@@ -15,3 +15,6 @@ Route.put('/forgot_pasword', 'ForgotPasswordController.update')
 Route.resource('products','ProductController')
   .only(['store', 'index', 'update', 'destroy']).middleware(['auth'])
 
+Route.post('/addresses', 'AddressController.store')
+
+Route.post('/providers', 'ProviderController.store')
