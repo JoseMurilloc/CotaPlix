@@ -4,11 +4,17 @@ import profile from '../../public/assets/profile.svg';
 
 import { Container  } from '../styles/header/styles';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  title?: string;
+}
+
+const Header: React.FC<HeaderProps> = ({
+  title
+}) => {
   return (
     <Container>
       <span></span>
-      <h1>quick quote</h1>
+      <h1>{title ? title : 'quick quote'}</h1>
 
       <section>
         <div className="setting">
