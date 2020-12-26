@@ -1,11 +1,10 @@
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 87px;
   width: 100%;
 
-  background-color: #fff;
+  background-color: #E5E5E5;
 
   display: flex;
   justify-content: space-between;

@@ -44,10 +44,10 @@ export const Main = styled.div`
 export const Navigation = styled.ul<NavigationProps>`
 
   li#title {
-    background: #FCFCFC;
+    background: #E5E5E5;
     border-radius: 20px 0px 0px 20px;
     
-    width: 115%;
+    width: 100%;
     height: 47px;
 
     a {

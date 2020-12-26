@@ -69,7 +69,6 @@ export const ContainerFirst = styled.div`
     justify-content: center;
     align-items: center;
     height: 80vh;
-    /* background-color: red; */
 
     h1 {
       font-weight: bold;
@@ -236,7 +235,6 @@ export const ContainerFooter = styled.div`
 
  footer {
   flex: 1;
-  /* background-color: red; */
   width: 100%;
   display: flex;
   align-items: flex-end;
