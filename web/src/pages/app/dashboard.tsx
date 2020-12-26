@@ -1,62 +1,27 @@
 import { 
   Container,
   Main,
-  Content
 } from '../../styles/dashboard/styles';
 
 import Router from "next/router";
 
 import Nav from '../../components/nav';
 
-import moreIconBlack from '../../../public/assets/moreIconBlack.svg';
-import listBlack from '../../../public/assets/listBlack.svg';
-import packageIconBlack from '../../../public/assets/packageIconBlack.svg';
-import { Context } from 'vm';
 import api from '../../services/api';
 import Header from '../../components/header';
-import { motion } from 'framer-motion';
 import { GetServerSideProps } from 'next';
-// import Redirect from '../../components/redirect';
+import { useCallback, useState } from 'react';
+import HomeDash from '../../components/homeDash';
+import RegisterProduct from '../../components/registerProduct';
 
 function Dashboard() {
-  
+ 
   return (
     <Container>
       <Nav/>
       <Main>
         <Header />
-        <Content style={{ backgroundColor: 'white', height: '86.5vh' }}>
-          <h1>Funcionalidades mais recorrentes</h1>
-
-          <div id="container">
-            <motion.div 
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              id="register-product"
-            >
-              <img src={moreIconBlack} alt="More"/>
-              <p>Cadastrar Produto</p>
-            </motion.div>
-
-            <motion.div 
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              id="register-list"
-            >
-              <img src={listBlack} alt="More"/>
-              <p>Cadastrar lista</p>
-            </motion.div>
-
-            <motion.div 
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-              id="open-event"
-            >
-              <img src={packageIconBlack} alt="More"/>
-              <p>Abrir cotação</p>
-            </motion.div>
-          </div>
-        </Content>
+        <HomeDash />
       </Main>
     </Container>
   );
@@ -68,7 +33,7 @@ interface User {
   name: string;
 }
 
-export const getServerSideProps: GetServerSideProps<User> = async (ctx) => {
+export const getServerSideProps: GetServerSideProps<User> = async (ctx: any) => {
   const cookie = await ctx.req.headers.cookie as string;
 
   const handleRedirection = () => 
