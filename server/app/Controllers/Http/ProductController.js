@@ -3,7 +3,6 @@
 const Product = use('App/Models/Product')
 
 class ProductController {
-
   async index ({ auth }) {
     const products = await Product.query()
       .where('user_id', auth.user.id)
@@ -14,7 +13,7 @@ class ProductController {
   }
 
   async store ({ request, auth }) {
-    const data = request.only(['description','price', 'code_bar', 'unity'])
+    const data = request.only(['description', 'price', 'code_bar', 'unity'])
     const user_id = auth.user.id
 
     const product = await Product.create({
@@ -25,7 +24,7 @@ class ProductController {
     return product
   }
 
-  async update({ request, params }) {
+  async update ({ request, params }) {
     const product = await Product.findOrFail(params.id)
 
     const data = request.only([
@@ -42,12 +41,12 @@ class ProductController {
     return product
   }
 
-  async destroy({ params, response }) {
+  async destroy ({ params, response }) {
     const { id } = params
     const product = await Product.find(id)
 
     if (!product) {
-      return response.status(400).json({ error: 'Product not exists please try again'})
+      return response.status(400).json({ error: 'Product not exists please try again' })
     }
 
     await product.delete()

@@ -7,7 +7,7 @@ class AddressController {
 
     const data = request.only(['uf', 'state', 'city', 'neighborhood', 'number']);
 
-    const address = await Address.create(data);
+    const address = await Address.create(data)
 
     return address
   }
