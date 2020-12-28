@@ -23,6 +23,7 @@ Route.group(() => {
       ['products.store', 'Product/Store']
     ]))
 
-  Route.post('/providers', 'ProviderController.store')
   Route.get('/providers', 'ProviderController.index')
+  Route.post('/providers', 'ProviderController.store')
+  Route.delete('/providers/:id', 'ProviderController.destroy')
 }).middleware(['auth'])
