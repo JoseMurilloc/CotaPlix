@@ -10,7 +10,7 @@ class ProviderController {
       .query()
       .with('address')
       .where('user_id', id)
-      .select(['name_fantasy', 'name_salesman', 'email','address_id'])
+      .select(['name_fantasy', 'name_salesman', 'email','address_id', 'id'])
       .fetch()
 
     return providers;
@@ -26,6 +26,16 @@ class ProviderController {
 
     return provider;
 
+  }
+
+  async destroy({ params, response }) {
+    const { id } = params
+
+    const provider = await Provider.find(id)
+
+    await provider.delete()
+
+    return response.status(200).json({ ok: true });
   }
 }
 
