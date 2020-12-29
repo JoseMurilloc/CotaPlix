@@ -16,7 +16,7 @@ class ProviderController {
     return providers;
   }
 
-  async store ({ request, auth }) {
+  async store ({ request, auth, response }) {
     const data = request.only(['name_fantasy', 'name_salesman', 'email','address_id'])
 
     const provider = await Provider.create({
@@ -25,7 +25,6 @@ class ProviderController {
     });
 
     return provider;
-
   }
 
   async destroy({ params, response }) {
@@ -33,9 +32,13 @@ class ProviderController {
 
     const provider = await Provider.find(id)
 
+    if (!provider) {
+      return response.status(400).json({ error: 'Provider not found' })
+    }
+
     await provider.delete()
 
-    return response.status(200).json({ ok: true });
+    return response.status(200).json()
   }
 }
 

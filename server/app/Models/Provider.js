@@ -8,7 +8,11 @@ class Provider extends Model {
     super.boot()
     this.addHook(
       'afterDelete',
-      'ProviderHook.deleteAddressOfProduct'
+      'ProviderHook.deleteAddressOfProvider'
+    )
+    this.addHook(
+      'beforeCreate',
+      'ProviderHook.checkExistAddressTheProvider'
     )
   }
 
