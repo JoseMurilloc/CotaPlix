@@ -5,8 +5,6 @@ export const Container = styled.div`
   background-color: #E5E5E5;
   height: 86%;
 
-    /* background-color: orange; */
-
   form {
     display: flex;
     flex-direction: column;
@@ -71,6 +69,10 @@ export const Container = styled.div`
       color: #FFFFFF;
       margin-left: 15px;
       margin-top: 38px; 
+    }
+
+    #max-width-menu {
+      width: 430px !important;
     }
   }
 `;
