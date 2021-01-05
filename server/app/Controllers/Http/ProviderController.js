@@ -16,7 +16,15 @@ class ProviderController {
     return providers;
   }
 
-  async store ({ request, auth, response }) {
+  /**
+   * --------------------- DOCUMENTAÇÃO COMMENTS ---------------------
+   * Chamando essa função somente quando tiver o ID do endereço para podemos
+   * usar no [data] do store
+   *
+   * { address_id } = [POST] /addresses
+   * [POST] /providers
+   */
+  async store ({ request, auth }) {
     const data = request.only(['name_fantasy', 'name_salesman', 'email','address_id'])
 
     const provider = await Provider.create({
@@ -25,6 +33,20 @@ class ProviderController {
     });
 
     return provider;
+  }
+
+  async update({ params, request }) {
+    const provider = await Provider.findOrFail(params.id)
+
+    const data = request.only([
+      'name_fantasy',
+      'name_salesman',
+      'email',
+    ])
+
+    provider.merge(data)
+    await provider.save()
+    return provider
   }
 
   async destroy({ params, response }) {

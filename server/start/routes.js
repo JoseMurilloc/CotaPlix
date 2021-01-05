@@ -2,16 +2,13 @@
 
 const Route = use('Route')
 
-
-Route.post('/users', 'UserController.store')
-  .validator('User/Store')
+Route.post('/users', 'UserController.store').validator('User/Store')
 Route.get('/user', 'UserController.show').middleware(['auth'])
 
 Route.post('/auth', 'AuthController.store')
 
-Route.post('/forgot_pasword', 'ForgotPasswordController.store')
-Route.put('/forgot_pasword', 'ForgotPasswordController.update')
-
+Route.post('/forgot', 'ForgotPasswordController.store')
+Route.post('/reset', 'ResetPasswordController.store')
 
 
 Route.group(() => {
@@ -23,7 +20,9 @@ Route.group(() => {
       ['products.store', 'Product/Store']
     ]))
 
-  Route.get('/providers', 'ProviderController.index')
-  Route.post('/providers', 'ProviderController.store')
-  Route.delete('/providers/:id', 'ProviderController.destroy')
+  Route.resource('providers', 'ProviderController')
+    .only(['index', 'store', 'update', 'destroy'])
+    .validator(new Map([
+      ['providers.store', 'Provider/Store']
+    ]))
 }).middleware(['auth'])
