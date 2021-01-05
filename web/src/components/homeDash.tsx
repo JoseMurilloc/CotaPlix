@@ -2,16 +2,16 @@ import React from 'react';
 
 import { Container } from '../styles/homeDash/styles';
 
-import moreIconBlack from '../../public/assets/moreIconBlack.svg';
+import products from '../../public/assets/products.svg';
 import listBlack from '../../public/assets/listBlack.svg';
 import packageIconBlack from '../../public/assets/packageIconBlack.svg';
+import packageWhite from '../../public/assets/packageWhite.svg';
 import { motion } from 'framer-motion';
 import Router from 'next/router';
 
 const HomeDash: React.FC = () => {
   return (
     <Container>
-
       <div id="container">
         <h1>Funcionalidades mais recorrentes</h1>
         <div>
@@ -21,7 +21,7 @@ const HomeDash: React.FC = () => {
             id="register-product"
             onClick={() => Router.push('/app/dashRegisterProduct')}
           >
-            <img src={moreIconBlack} alt="More"/>
+            <img src={products} alt="More"/>
             <p>Cadastrar Produto</p>
           </motion.div>
 
@@ -54,7 +54,7 @@ const HomeDash: React.FC = () => {
             whileTap={{ scale: 0.9 }}
             id="event-last"
           >
-            <img src={packageIconBlack} alt="More"/>
+            <img src={packageWhite} alt="More"/>
           </motion.div>
 
           <motion.div 
@@ -62,7 +62,7 @@ const HomeDash: React.FC = () => {
             whileTap={{ scale: 0.9 }}
             id="event-last"
           >
-            <img src={packageIconBlack} alt="More"/>
+            <img src={packageWhite} alt="More"/>
           </motion.div>
 
           <motion.div 
@@ -70,7 +70,7 @@ const HomeDash: React.FC = () => {
             whileTap={{ scale: 0.9 }}
             id="event-last"
           >
-            <img src={packageIconBlack} alt="More"/>
+            <img src={packageWhite} alt="More"/>
           </motion.div>
           
         </div>

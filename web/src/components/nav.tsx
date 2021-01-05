@@ -13,7 +13,9 @@ const Nav: React.FC = () => {
     <Container>
       <div>
         <h1>quick quock</h1>
-        <img src={moreIcon} alt="More Icon"/>
+        <button>
+          <img src={moreIcon} alt="More Icon"/>
+        </button>
       </div>
 
       <Navigation>

@@ -51,7 +51,7 @@ export const Container = styled.div`
       line-height: 19px;
       letter-spacing: 0.015em;
 
-      color: #161616;
+      color: #000;
     }
   }
 
@@ -66,8 +66,7 @@ export const Container = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-
-    background: rgb(235, 235, 235, 0.8);
+    background: #3B1993;
     border-radius: 9px;
     margin-right: 20px;
 
@@ -75,14 +74,18 @@ export const Container = styled.div`
   }
 
   #register-product {
-    background: rgba(107, 104, 251, 0.5);
+    background: #212698;
+
+    p {
+      color: #fff;
+    }
   }
 
   #register-list {
-    background: #FFF7AE;
+    background: #FECE2F;
   }
 
   #open-event {
-    background: rgba(104, 224, 251, 0.5);
+    background: #68E0FB;
   }
 `;

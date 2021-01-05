@@ -8,7 +8,7 @@ interface NavigationProps {
 
 export const Container = styled(motion.nav)`
   height: 100%;
-  background: #363882;
+  background: #212698;
   padding-left: 11px;
   width: 185px;
 
@@ -29,6 +29,11 @@ export const Container = styled(motion.nav)`
       text-align: center;
       letter-spacing: 0.015em;
       color: #FFFFFF;
+    }
+
+    button {
+      background: transparent;
+      border: none;
     }
   }
 
