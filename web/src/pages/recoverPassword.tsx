@@ -1,6 +1,6 @@
 import { Form } from '@unform/web';
 import { motion } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Input from '../components/input';
 
 import { 
@@ -11,8 +11,13 @@ import {
 
 import recoverPassword from '../../public/assets/recoverPassword.svg';
 import api from '../services/api';
+
 import { useToast } from '../hooks/toast';
 import { useRouter } from 'next/router';
+
+import * as Yup from 'yup';
+import getValidationErrors from '../utils/getValidationErrors';
+
 
 interface SendMail {
   email: string;
@@ -24,15 +29,23 @@ const RecoverPassword: React.FC = () => {
   const router = useRouter(); 
   const [disabledStatus, setDisabledStatus] = useState(false);
 
-  // const buttonRef = useRef<HTMLButtonElement>()
+  const formRef = useRef(null)
 
 
   async function handleSendEmail(data: SendMail) {
     try {
+      formRef.current?.setErrors({});   
+
+      const scheme = Yup.object().shape({
+        email: Yup.string().required('E-mail obrigatório').email('Digite um email válido')
+      });
+  
+      await scheme.validate(data, {
+        abortEarly: false
+      })
+      
       setDisabledStatus(true)
       await api.post('/forgot_pasword', data)
-
-      // console.log(buttonRef.current);
 
       addToast({
         type: 'sucess',
@@ -40,7 +53,16 @@ const RecoverPassword: React.FC = () => {
         description: 'Verifique em sua caixa de entrafa de email'
       });      
       router.push('/recoverPasswordUpdate');
-    } catch(error) {
+    } catch(err) {
+
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err)
+  
+        formRef.current?.setErrors(errors) 
+        
+        return;
+       }
+
       addToast({
         type: 'error',
         title: 'Recuperação de senha',
@@ -61,7 +83,7 @@ const RecoverPassword: React.FC = () => {
           No espaço em branco abaixo digite seu e-mail, logo em seguida enviaremos um código para você ter acesso a sua nova senha.
         </p>
         
-        <Form onSubmit={handleSendEmail}>
+        <Form ref={formRef} onSubmit={handleSendEmail}>
           <Input 
             type="email"
             name="email"

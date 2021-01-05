@@ -61,21 +61,20 @@ export const Content = styled.div`
     }
 
     button {
-      width: 255px;
-      height: 51px;
+      background: rgba(226, 226, 226, 0.5);
+      border: 2px solid #363981;
+      border-radius: 5px;
 
-      background: #363981;
-      border: 1px solid #C4C4C4;
-      border-radius: 30px;
+      width: 189px;
+      height: 48px;
 
       font-weight: bold;
       font-size: 16px;
       line-height: 19px;
 
       letter-spacing: 0.015em;
-      color: #FFFFFF;
+      color: #363981;
 
-      text-transform: uppercase;
     }
 
     button:disabled,

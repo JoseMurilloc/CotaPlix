@@ -3,16 +3,14 @@ import {
   Main,
 } from '../../styles/dashboard/styles';
 
+import { GetServerSideProps } from 'next';
 import Router from "next/router";
 
 import Nav from '../../components/nav';
+import HomeDash from '../../components/homeDash';
+import Header from '../../components/header';
 
 import api from '../../services/api';
-import Header from '../../components/header';
-import { GetServerSideProps } from 'next';
-import { useCallback, useState } from 'react';
-import HomeDash from '../../components/homeDash';
-import RegisterProduct from '../../components/registerProduct';
 
 function Dashboard() {
  
@@ -54,7 +52,7 @@ export const getServerSideProps: GetServerSideProps<User> = async (ctx: any) => 
     // console.log(ctx.req.headers.cookie)
     return {
       props: {
-        user: response.data
+        user: response.data,
       }
     }
   } catch {

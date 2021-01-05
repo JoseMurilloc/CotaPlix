@@ -1,17 +1,80 @@
 import { Form } from '@unform/web';
+import { useToast } from '../hooks/toast';
+import api from '../services/api';
 import { Container } from '../styles/registerProduct/styles';
 import Input from './input';
 
-const RegisterProduct: React.FC = () => {
+import * as Yup from 'yup';
+import { useRef } from 'react';
+import getValidationErrors from '../utils/getValidationErrors';
 
-  async function handleRegisterProduct(data) {
-    console.log(data);
+interface ProductProps {
+  description: string;
+  price: number;
+  code_bar: string;
+  unity: number;
+}
+
+interface RegisterProductProps {
+  token: string;
+} 
+
+const RegisterProduct: React.FC<RegisterProductProps> = ({
+  token
+}) => {
+
+  const { addToast } = useToast()
+  const formRef = useRef(null);
+
+  async function handleRegisterProduct(data: ProductProps) {
+    try {
+
+      formRef.current?.setErrors({});   
+
+
+      const scheme = Yup.object().shape({
+        description: Yup.string().required('Descrição obrigatória'),
+        price: Yup.string().required('Preço é Obrigatorio'),
+        code_bar: Yup.string().required('O código de barra é obrigatório'),
+        unity: Yup.string().required('Unidade é um campo obrigatório')
+      })
+
+      await scheme.validate(data, {
+        abortEarly: false
+      })
+  
+
+      await api.post('/products', data, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
+
+      addToast({
+        type: 'sucess',
+        title: 'Produto cadastrado com sucesso',
+      })
+      
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(err)
+  
+        formRef.current?.setErrors(errors) 
+        
+        return;
+      }
+      addToast({
+        type: 'error',
+        title: 'Error ao cadastrar produto',
+        description: 'Erro na tentativa de cadastrar produto'
+      })
+    }
   }
 
   return (
     <Container>
 
-      <Form onSubmit={handleRegisterProduct}>
+      <Form ref={formRef} onSubmit={handleRegisterProduct}>
         <h1>Cadastramento de produtos</h1>
         
         <div className="container-input">
@@ -21,7 +84,7 @@ const RegisterProduct: React.FC = () => {
 
         <div className="container-input">
           <label htmlFor="description">Descrição *</label>
-          <Input type="text" name="description" placeholder="" />
+          <Input id="max-width-menu" type="text" name="description" placeholder="" />
         </div>
 
         <div className="subcontainer-input">

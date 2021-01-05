@@ -1,4 +1,4 @@
-import { Navigation, SideBar as Container } from '../styles/nav/styles';
+import { Navigation, Container } from '../styles/nav/styles';
 
 import list from '../../public/assets/list.svg';
 import packageIcon from '../../public/assets/packageIcon.svg';
@@ -10,7 +10,6 @@ import moreIcon from '../../public/assets/moreIcon.svg';
 
 const Nav: React.FC = () => {
   return (
-
     <Container>
       <div>
         <h1>quick quock</h1>

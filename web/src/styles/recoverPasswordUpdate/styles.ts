@@ -50,12 +50,13 @@ export const Content = styled.div`
     }
 
     button {
-      width: 255px;
-      height: 51px;
+      width: 189px;
+      height: 48px;
 
-      background: #363981;
-      border: 1px solid #C4C4C4;
-      border-radius: 30px;
+      background: rgba(33, 38, 152, 0.8);
+      border: 2px solid #6B68FB;
+      box-sizing: border-box;
+      border-radius: 5px;
 
       font-weight: bold;
       font-size: 16px;
@@ -63,9 +64,7 @@ export const Content = styled.div`
 
       letter-spacing: 0.015em;
       color: #FFFFFF;
-
-      text-transform: uppercase;
-
+      
       margin-top: 30px;
     }
   }

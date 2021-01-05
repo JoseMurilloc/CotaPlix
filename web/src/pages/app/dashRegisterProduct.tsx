@@ -1,9 +1,8 @@
 import Router from 'next/router';
-import React from 'react';
 import Header from '../../components/header';
 import Nav from '../../components/nav';
 
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import RegisterProduct from '../../components/registerProduct';
 import api from '../../services/api';
 
@@ -12,16 +11,25 @@ import {
   Main
 } from '../../styles/dashRegisterProduct/styles';
 
-const DashRegisterProduct: React.FC = () => {
+const DashRegisterProduct: React.FC = ({ token }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   return (
     <Container>
       <Nav />
       <Main>
         <Header />
-        <RegisterProduct />
+        <RegisterProduct token={token} />
       </Main>
     </Container>
   );
+}
+
+interface IGetPros {
+  user: {
+    id: string;
+    email: string;
+    name: string;
+  },
+  token: string;
 }
 
 interface User {
@@ -31,7 +39,7 @@ interface User {
 }
 
 
-export const getServerSideProps: GetServerSideProps<User> = async (ctx: any) => {
+export const getServerSideProps: GetServerSideProps = async (ctx: any) => {
   const cookie = await ctx.req.headers.cookie as string;
 
   const handleRedirection = () => 
@@ -48,11 +56,14 @@ export const getServerSideProps: GetServerSideProps<User> = async (ctx: any) => 
         Authorization: `Bearer ${cookieCotaPlix}`
       }
     })
+
+    const user = response.data as User;
     
     // console.log(ctx.req.headers.cookie)
     return {
       props: {
-        user: response.data
+        user,
+        token: cookieCotaPlix
       }
     }
   } catch {

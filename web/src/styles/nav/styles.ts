@@ -6,12 +6,11 @@ interface NavigationProps {
 }
 
 
-export const SideBar = styled(motion.nav)`
-  height: 100vh;
+export const Container = styled(motion.nav)`
+  height: 100%;
   background: #363882;
   padding-left: 11px;
   width: 185px;
-  /* padding: 19px 19px 0px 16px; */
 
 
   div {
@@ -43,6 +42,8 @@ export const Main = styled.div`
 
 export const Navigation = styled.ul<NavigationProps>`
 
+  width: 100%;
+
   li#title {
     background: #E5E5E5;
     border-radius: 20px 0px 0px 20px;
@@ -62,31 +63,6 @@ export const Navigation = styled.ul<NavigationProps>`
     }
   }
 
-  /* li:hover {
-    background: #FCFCFC;
-    border-radius: 20px 0px 0px 20px;
-    
-    width: 115%;
-    height: 47px;
-    padding: 5px;
-
-    img {
-      background: #000;
-    }
-
-    a {
-      font-weight: bold !important;
-      font-size: 16px !important;
-      line-height: 19px !important;
-
-      letter-spacing: 0.015em !important;
-
-      color: #1B1D44 !important;
-
-    }
-  } */
-
-
 
   li {
   
@@ -94,11 +70,9 @@ export const Navigation = styled.ul<NavigationProps>`
     justify-content: flex-start;
     align-items: center;
 
-    /* padding: 22px 0; */
     width: 100%;
     height: 50px;
     margin: 22px 0;
-    /* background-color: red; */
 
     a {
       text-decoration: none;
@@ -113,12 +87,20 @@ export const Navigation = styled.ul<NavigationProps>`
   }
 `;
 
-const ListItem = css`
+
+
+
+/* li:hover {
   background: #FCFCFC;
   border-radius: 20px 0px 0px 20px;
   
-  width: 113%;
+  width: 115%;
   height: 47px;
+  padding: 5px;
+
+  img {
+    background: #000;
+  }
 
   a {
     font-weight: bold !important;
@@ -130,4 +112,4 @@ const ListItem = css`
     color: #1B1D44 !important;
 
   }
-`;
+} */
